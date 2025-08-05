@@ -1,0 +1,28 @@
+[
+  {
+    "id": "ubi-101",
+    "title": "What is UBI?",
+    "content": "Universal Basic Income is...",
+    "reward": 15,
+
+    "question": {
+      "prompt": "Which country implemented UBI nationwide?",
+      "options": ["Canada", "Finland", "Brazil"],
+      "answer": 1
+    },
+    "isLocked": false
+  },
+  {
+    "id": "ubi-102",
+    "title": "How GoodDollar Works",
+    "content": "The new chapter is GoodDollar UBI Economy 2.0 — transitioning from simply distributing G$ to building a sustainable digital economy where G$ circulates through investments, grants, and real economic activity, ensuring lasting value creation.",
+    "reward": 25,
+
+    "question": {
+      "prompt": "GoodDollar Reserve capital came from?",
+      "options": ["Crypto shilling", "Grants and Supporters", "VC's"],
+      "answer": 2
+    },
+    "isLocked": false
+  }
+]
