@@ -39,12 +39,13 @@ export default function LessonPage({
 
   return (
     <div className="p-4">
-      <h1>{lesson?.title}</h1>
       <div className="w-full flex justify-end">
-        <Link className="bg-red-500 text-white p-2" href="/">
+        <Link className="bg-red-500 text-white px-2 rounded-md" href="/">
           Go Back
         </Link>
       </div>
+      <h1 className="text-lg text-center">{lesson?.title}</h1>
+
       <div>{lesson?.content}</div>
 
       {/* Question Section (appears after reading) */}

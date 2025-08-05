@@ -23,6 +23,6 @@
       "options": ["Crypto shilling", "Grants and Supporters", "VC's"],
       "answer": 2
     },
-    "isLocked": false
+    "isLocked": true
   }
 ]
