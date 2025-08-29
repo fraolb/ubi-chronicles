@@ -1,21 +1,22 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import dbConnect from "~/lib/mongodb";
 import Streak from "~/model/Streak";
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: Request) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
+  }
+
+  const body = await req.json();
+  const { userId } = body;
+
+  if (!userId) {
+    return NextResponse.json({ error: "User ID is required" }, { status: 400 });
   }
 
   await dbConnect();
 
   try {
-    const { userId } = req.body;
-
-    if (!userId) {
-      return res.status(400).json({ error: "User ID is required" });
-    }
-
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
@@ -69,12 +70,17 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
     }
 
     await streak.save();
-    res.status(200).json({
-      success: true,
-      streak: streak,
-    });
+
+    return NextResponse.json(
+      { success: true, streak: streak },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Streak update error:", error);
-    res.status(500).json({ error: "Internal server error" });
+
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
