@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface IStreak extends Document {
-  userId: Number; // Farcaster FID or wallet address
+  userId: number; // Farcaster FID or wallet address
   currentStreak: number;
   longestStreak: number;
   lastCompletedDate: Date; // Last time user completed a lesson
