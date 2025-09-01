@@ -7,16 +7,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
   }
 
-  const body = await req.json();
-  const { userId } = body;
-
-  if (!userId) {
-    return NextResponse.json({ error: "User ID is required" }, { status: 400 });
-  }
-
-  await dbConnect();
-
   try {
+    const body = await req.json();
+    const { userId } = body;
+
+    if (!userId) {
+      return NextResponse.json(
+        { error: "User ID is required" },
+        { status: 400 }
+      );
+    }
+
+    await dbConnect();
+
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
@@ -31,7 +34,7 @@ export async function POST(req: Request) {
         lastCompletedDate: today,
         totalCompleted: 1,
       });
-      return streak;
+      return NextResponse.json({ success: true, streak }, { status: 200 });
     }
 
     const lastCompleted = streak.lastCompletedDate
@@ -44,7 +47,7 @@ export async function POST(req: Request) {
 
     // Check if user already completed today
     if (lastCompleted && lastCompleted.getTime() === today.getTime()) {
-      return streak; // No update needed
+      return NextResponse.json({ success: true, streak }, { status: 200 });
     }
 
     const yesterday = new Date(today);
@@ -64,20 +67,14 @@ export async function POST(req: Request) {
       streak.currentStreak = 1;
       streak.lastCompletedDate = today;
       streak.totalCompleted += 1;
-
-      // Only update longest streak if current was higher
       streak.longestStreak = Math.max(streak.longestStreak, 1);
     }
 
     await streak.save();
 
-    return NextResponse.json(
-      { success: true, streak: streak },
-      { status: 200 }
-    );
+    return NextResponse.json({ success: true, streak }, { status: 200 });
   } catch (error) {
     console.error("Streak update error:", error);
-
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

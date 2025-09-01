@@ -40,6 +40,7 @@ export const StreakProvider: React.FC<{ children: React.ReactNode }> = ({
       });
 
       const result = await fetchedStreak.json();
+      console.log("Fetched user streak:", result);
       setStreak(result);
     } catch (err) {
       console.error("Error fetching user streak:", err);
