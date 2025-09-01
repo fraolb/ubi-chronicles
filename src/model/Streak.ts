@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface IStreak extends Document {
-  userId: string; // Farcaster FID or wallet address
+  userId: Number; // Farcaster FID or wallet address
   currentStreak: number;
   longestStreak: number;
   lastCompletedDate: Date; // Last time user completed a lesson
@@ -12,7 +12,7 @@ export interface IStreak extends Document {
 const StreakSchema: Schema = new Schema(
   {
     userId: {
-      type: String,
+      type: Number,
       required: true,
       unique: true,
     },
