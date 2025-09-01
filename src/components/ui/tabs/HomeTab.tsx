@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import lessons from "../../../data/lessons.json"; // Adjust the import path as needed
 import { useStreakContext } from "~/components/providers/StreakProvider";
+import StreakBlock from "~/components/blocks/StreakBlock";
 
 export function HomeTab() {
   const router = useRouter();
@@ -20,18 +21,7 @@ export function HomeTab() {
       </div>
 
       {/* Daily Streak Banner */}
-      <div className="bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg p-4 mb-6 text-white">
-        <div className="flex justify-between items-center">
-          <div>
-            <p className="text-xs font-medium">Daily Streak</p>
-            <p className="text-xl font-bold">3 days 🔥</p>
-          </div>
-          <div className="text-right">
-            <p className="text-xs">Next reward in:</p>
-            <p className="font-mono">02:14:36</p>
-          </div>
-        </div>
-      </div>
+      <StreakBlock />
 
       {/* Lesson Cards */}
       <div className="space-y-4 mb-6">
