@@ -2,9 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import lessons from "../../../data/lessons.json"; // Adjust the import path as needed
+import { useStreakContext } from "~/components/providers/StreakProvider";
 
 export function HomeTab() {
   const router = useRouter();
+  const { streak, loading, streakError } = useStreakContext();
+  console.log("Streak data in HomeTab:", { streak, loading, streakError });
 
   return (
     <div className="flex flex-col h-full px-4 py-6">
