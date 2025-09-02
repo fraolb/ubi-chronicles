@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { getLesson } from "../../../lib/fetchLessons";
 import { use } from "react";
 import Link from "next/link";
@@ -51,7 +52,7 @@ export default function LessonPage({
 
   const showNotification = (notif: Notification) => {
     setNotification(notif);
-    setTimeout(() => setNotification(null), 3000);
+    setTimeout(() => setNotification(null), 5000);
   };
 
   const handleAnswerSubmit = (selectedOption: number | null) => {
@@ -106,7 +107,7 @@ export default function LessonPage({
       {/* Notification Popup */}
       {notification && (
         <div
-          className={`fixed top-4 right-4 z-50 transform transition-all duration-300 ${
+          className={`fixed top-4 right-4 z-50 transform w-3/4 transition-all duration-300 ${
             notification
               ? "translate-x-0 opacity-100"
               : "translate-x-full opacity-0"
@@ -136,7 +137,6 @@ export default function LessonPage({
           </div>
         </div>
       )}
-
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -207,6 +207,7 @@ export default function LessonPage({
 
           <QuizQuestion
             question={lesson.question}
+            reward={lesson.reward}
             onSuccess={handleAnswerSubmit}
           />
         </div>
@@ -217,16 +218,22 @@ export default function LessonPage({
 
 function QuizQuestion({
   question,
+  reward,
   onSuccess,
 }: {
   question: { prompt: string; options: string[]; answer: number };
+  reward: number;
   onSuccess: (selectedOption: number | null) => void;
 }) {
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const router = useRouter(); // Add this import
 
   const handleSubmit = () => {
     setSubmitted(true);
+    const correct = selected === question.answer;
+    setIsCorrect(correct);
     onSuccess(selected);
   };
 
@@ -291,13 +298,28 @@ function QuizQuestion({
           Submit Answer
         </button>
       ) : (
-        <div className="text-center">
-          <button
-            onClick={() => window.location.reload()}
-            className="bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200"
-          >
-            Try Again
-          </button>
+        <div className="text-center space-y-3">
+          {isCorrect ? (
+            <button
+              onClick={() => router.push("/")}
+              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 transform hover:scale-105"
+            >
+              Done - Return Home ✅
+            </button>
+          ) : (
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200"
+            >
+              Try Again
+            </button>
+          )}
+
+          {isCorrect && (
+            <p className="text-green-600 dark:text-green-400 font-medium mt-2">
+              Congratulations! You earned +{reward} G$
+            </p>
+          )}
         </div>
       )}
     </div>
