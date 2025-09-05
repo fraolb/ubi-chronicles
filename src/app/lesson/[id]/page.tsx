@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAccount } from "wagmi";
 import { getLesson } from "../../../lib/fetchLessons";
 import { use } from "react";
 import Link from "next/link";
@@ -30,6 +31,7 @@ export default function LessonPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const { address } = useAccount();
   const { id } = use(params);
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [loading, setLoading] = useState(true);
@@ -55,12 +57,33 @@ export default function LessonPage({
     setTimeout(() => setNotification(null), 5000);
   };
 
-  const handleAnswerSubmit = (selectedOption: number | null) => {
+  const handleAnswerSubmit = async (selectedOption: number | null) => {
     if (selectedOption === null) return;
 
     const isCorrect = selectedOption === lesson?.question.answer;
 
-    if (isCorrect) {
+    if (isCorrect && address) {
+      try {
+        const response = await fetch("/api/reward", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ wallet: address }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to transfer reward");
+        }
+
+        console.log("Transfer successful:", data);
+        //return data;
+      } catch (error) {
+        console.error("Reward transfer error:", error);
+        throw error;
+      }
       showNotification({
         type: "success",
         message: "Correct answer!",
