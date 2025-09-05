@@ -1,25 +1,38 @@
 "use client";
 
+import { useMiniApp } from "@neynar/react";
+
 export function ProfileTab() {
+  const { context } = useMiniApp();
   const stats = [
-    { label: "Total Earned", value: "1,420 G$" },
-    { label: "Lessons Completed", value: "27" },
-    { label: "Quizzes Won", value: "14" },
-    { label: "Donation Impact", value: "92 people" },
+    { label: "Total Earned", value: "15 G$" },
+    { label: "Lessons Completed", value: "1" },
+    { label: "Quizzes Won", value: "0" },
+    { label: "Donation Impact", value: "0 people" },
   ];
 
   const nfts = [
     { id: 1, name: "Scholar", emoji: "🎓", progress: 100 },
-    { id: 2, name: "Philanthropist", emoji: "💖", progress: 65 },
-    { id: 3, name: "Quiz Champion", emoji: "🏆", progress: 30 },
+    { id: 2, name: "Philanthropist", emoji: "💖", progress: 10 },
+    { id: 3, name: "Quiz Champion", emoji: "🏆", progress: 10 },
   ];
 
   return (
     <div className="flex flex-col h-full px-4 py-6">
       {/* Header */}
       <div className="text-center mb-6">
-        <h1 className="text-2xl font-bold text-purple-600">Your Profile</h1>
-        <p className="text-sm text-gray-500">@cryptocitizen.farcaster</p>
+        {/* <h1 className="text-2xl font-bold text-purple-600">Your Profile</h1> */}
+        {context?.user.pfpUrl && (
+          <img
+            src={context.user.pfpUrl}
+            alt="Profile"
+            className="w-10 h-10 rounded-full border-2 border-primary"
+          />
+        )}
+        <p className="text-sm text-gray-500">
+          {" "}
+          {context?.user.displayName || context?.user.username}
+        </p>
       </div>
 
       {/* Stats Grid */}
@@ -46,7 +59,7 @@ export function ProfileTab() {
             >
               <span className="block text-2xl mb-1">{nft.emoji}</span>
               <p className="text-xs font-medium">{nft.name}</p>
-              {nft.progress < 100 && (
+              {nft.progress <= 100 && (
                 <div className="mt-1">
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
                     <div
@@ -71,12 +84,12 @@ export function ProfileTab() {
               key={i}
               className={`h-8 rounded flex items-center justify-center text-xs 
                 ${
-                  i < 5
+                  i < 1
                     ? "bg-green-500 text-white"
                     : "bg-gray-100 dark:bg-gray-700"
                 }`}
             >
-              {i < 5 ? "🔥" : i + 1}
+              {i < 1 ? "🔥" : i + 1}
             </div>
           ))}
         </div>

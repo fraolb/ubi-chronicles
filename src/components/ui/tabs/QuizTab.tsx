@@ -56,15 +56,15 @@ export function QuizTab() {
         <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
           <div className="flex justify-between text-sm mb-2">
             <span>Total Earned:</span>
-            <span className="font-bold text-green-500">320 G$</span>
+            <span className="font-bold text-green-500">15 G$</span>
           </div>
           <div className="flex justify-between text-sm mb-2">
             <span>Correct Answers:</span>
-            <span className="font-bold">87%</span>
+            <span className="font-bold">100%</span>
           </div>
           <div className="flex justify-between text-sm">
             <span>Rank:</span>
-            <span className="font-bold">#42</span>
+            <span className="font-bold">#-</span>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ export function DonateTab() {
         <div className="flex justify-between items-center">
           <div>
             <p className="text-xs text-gray-500">Available to donate</p>
-            <p className="text-xl font-bold">245 G$</p>
+            <p className="text-xl font-bold">15 G$</p>
           </div>
           <button className="px-3 py-1 bg-purple-600 text-white rounded-full text-sm">
             Add Funds
