@@ -1,4 +1,4 @@
-import { type AccountAssociation } from '@farcaster/miniapp-core/src/manifest';
+import { type AccountAssociation } from "@farcaster/miniapp-core/src/manifest";
 
 /**
  * Application constants and configuration values.
@@ -22,65 +22,80 @@ export const APP_URL: string = process.env.NEXT_PUBLIC_URL!;
  * The name of the mini app as displayed to users.
  * Used in titles, headers, and app store listings.
  */
-export const APP_NAME = 'UBI Chronicles';
+export const APP_NAME = "UBI Chronicles";
 
 /**
  * A brief description of the mini app's functionality.
  * Used in app store listings and metadata.
  */
-export const APP_DESCRIPTION = 'A Farcaster mini app created with Neynar';
+export const APP_DESCRIPTION = "A Farcaster mini app created with Neynar";
 
 /**
  * The primary category for the mini app.
  * Used for app store categorization and discovery.
  */
-export const APP_PRIMARY_CATEGORY = 'games';
+export const APP_PRIMARY_CATEGORY = "games";
 
 /**
  * Tags associated with the mini app.
  * Used for search and discovery in app stores.
  */
-export const APP_TAGS = ['good', 'dollar', 'play', 'to', 'earn', 'learn', 'to', 'earn', 'game'];
+export const APP_TAGS = [
+  "good",
+  "dollar",
+  "play",
+  "to",
+  "earn",
+  "learn",
+  "to",
+  "earn",
+  "game",
+];
 
 // --- Asset URLs ---
 /**
  * URL for the app's icon image.
  * Used in app store listings and UI elements.
  */
-export const APP_ICON_URL: string = `${APP_URL}/icon.png`;
+export const APP_ICON_URL: string = `${APP_URL}/UBI_icon.png`;
 
 /**
  * URL for the app's Open Graph image.
  * Used for social media sharing and previews.
  */
-export const APP_OG_IMAGE_URL: string = `${APP_URL}/api/opengraph-image`;
+export const APP_OG_IMAGE_URL: string = `${APP_URL}/UBI_icon.png`;
 
 /**
  * URL for the app's splash screen image.
  * Displayed during app loading.
  */
-export const APP_SPLASH_URL: string = `${APP_URL}/splash.png`;
+export const APP_SPLASH_URL: string = `${APP_URL}/UBI_icon.png`;
 
 /**
  * Background color for the splash screen.
  * Used as fallback when splash image is loading.
  */
-export const APP_SPLASH_BACKGROUND_COLOR: string = '#f7f7f7';
+export const APP_SPLASH_BACKGROUND_COLOR: string = "#f7f7f7";
 
 /**
  * Account association for the mini app.
  * Used to associate the mini app with a Farcaster account.
  * If not provided, the mini app will be unsigned and have limited capabilities.
  */
-export const APP_ACCOUNT_ASSOCIATION: AccountAssociation | undefined =
-  undefined;
+export const APP_ACCOUNT_ASSOCIATION: AccountAssociation | undefined = {
+  header:
+    "eyJmaWQiOjg1OTE0OCwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEQ3OTI4NzlFMTZDNWU4N0VDRDUzMzE5RTEzNDcxMTQ3NTczMjZGNjIifQ",
+  payload: "eyJkb21haW4iOiJ1YmktY2hyb25pY2xlcy52ZXJjZWwuYXBwIn0",
+  signature:
+    "MHg4Zjc3MjMwZTExOGI2OTE5YzEwMDZjYzNlZGY2ZTgzOTYzMjRhODA4ZjlhZDFmNTA1MDNhOTJiODBkYmE2OGNmMzllOGI3NGVlNjA2Mjk3YjE3YmQ3NGUzZmMyNzBkNTQ3MGFlNzcxNGQyZWNjZGM1NjA1NGEyYjRjNWM4MGM0ODFj",
+};
 
 // --- UI Configuration ---
 /**
  * Text displayed on the main action button.
  * Used for the primary call-to-action in the mini app.
  */
-export const APP_BUTTON_TEXT = 'Play';
+export const APP_BUTTON_TEXT = "Play";
 
 // --- Integration Configuration ---
 /**
@@ -127,16 +142,16 @@ export const APP_REQUIRED_CHAINS: string[] = [];
 
 // PLEASE DO NOT UPDATE THIS
 export const SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN = {
-  name: 'Farcaster SignedKeyRequestValidator',
-  version: '1',
+  name: "Farcaster SignedKeyRequestValidator",
+  version: "1",
   chainId: 10,
   verifyingContract:
-    '0x00000000fc700472606ed4fa22623acf62c60553' as `0x${string}`,
+    "0x00000000fc700472606ed4fa22623acf62c60553" as `0x${string}`,
 };
 
 // PLEASE DO NOT UPDATE THIS
 export const SIGNED_KEY_REQUEST_TYPE = [
-  { name: 'requestFid', type: 'uint256' },
-  { name: 'key', type: 'bytes' },
-  { name: 'deadline', type: 'uint256' },
+  { name: "requestFid", type: "uint256" },
+  { name: "key", type: "bytes" },
+  { name: "deadline", type: "uint256" },
 ];
