@@ -1,14 +1,18 @@
 [
   {
     "id": "ubi-101",
-    "title": "What is UBI?",
-    "content": "Universal Basic Income is...",
+    "title": "What is Good Dollar?",
+    "content": "GoodDollar is a framework designed to reduce wealth inequality by leveraging blockchain technology to create a sustainable, universal basic income (UBI). It generates a continuous stream of digital currency (G$ tokens) through interest-earning reserves and distributes it for free to verified members on a daily basis. The ecosystem is funded by a combination of philanthropic donations and decentralized finance (DeFi) mechanisms, aiming to create a new, inclusive digital economy where everyone has a basic income to spend, save, or donate.",
     "reward": 15,
 
     "question": {
-      "prompt": "Which country implemented UBI nationwide?",
-      "options": ["Canada", "Finland", "Brazil"],
-      "answer": 1
+      "prompt": "How does the GoodDollar ecosystem primarily generate the funds used for its daily universal basic income (UBI) distributions?",
+      "options": [
+        "Through mandatory transaction fees charged to its users.",
+        "By selling user data to advertisers on its platform.",
+        "From the interest earned on capital reserves in DeFi protocols."
+      ],
+      "answer": 2
     },
     "isLocked": false
   },
